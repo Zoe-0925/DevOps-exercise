@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "ObjectLevel",
+        "Effect": "Allow",
+        "Action": [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+          "s3:PutObjectAcl"
+        ],
+        "Resource": [
+          "arn:aws:s3:::ap-southeast-2-test",
+          "arn:aws:s3:::ap-southeast-2-test/*"
+        ]
+      },
+      {
+        "Sid": "BucketLevel",
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetBucketPublicAccessBlock",
+          "s3:GetBucketOwnershipControls",
+          "s3:ListBucket",
+          "s3:GetBucketLocation"
+        ],
+        "Resource":  [
+          "arn:aws:s3:::ap-southeast-2-test",
+          "arn:aws:s3:::ap-southeast-2-test/*"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": "kms:Decrypt",
+        "Resource": "arn:aws:kms:ap-southeast-2:ACCOUNT_ID:key/12345"
+      }
+    ]
+  }
+  

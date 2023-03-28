@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-pod
+spec:
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+  initContainers:
+  - name: download-file
+    image: busybox
+    command: ["/bin/sh", "-c"]
+    args:
+    - "wget -O /data/myfile.txt https://github.com/BGLCorp/devops-interview-tests/blob/main/myfile.txt"
+    volumeMounts:
+    - name: shared-data
+      mountPath: /data
+  containers:
+  - name: myapp-container
+    image: alpine:latest
+    volumeMounts:
+    - name: shared-data
+      mountPath: /data
